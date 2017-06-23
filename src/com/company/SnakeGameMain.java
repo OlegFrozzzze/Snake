@@ -1,24 +1,31 @@
 package com.company;
 
 
+import com.company.Objects.Snake;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by ОЛЕГ on 22.06.2017.
  */
 
 
-public class SnakeGameMain extends JPanel {
+public class SnakeGameMain extends JPanel implements ActionListener {
 
     public static JFrame jFrame;
     public static final int SCALE = 32;
     public static final int WIDTH = 20;
     public static final int HEIGHT = 20;
+    public static int speed = 10;
 
+    Snake s = new Snake(5,6,5,5);
+    Timer timer = new Timer(1000/speed,this);
 
-    public void SnakeGameMain(){
-
+    public SnakeGameMain(){
+        timer.start();
     }
 
     public void paint(Graphics g){
@@ -34,6 +41,11 @@ public class SnakeGameMain extends JPanel {
             g.setColor(Color.green);
             g.drawLine(0,y,WIDTH*SCALE,y);
     }
+
+    for(int l=0;l<s.length;l++){
+            g.setColor(Color.red);
+            g.fillRect(s.sX[l]*SCALE+1,s.sY[l]*SCALE+1,SCALE -1,SCALE-1);
+    }
 }
 
     public static void main(String[] args) {
@@ -46,5 +58,11 @@ public class SnakeGameMain extends JPanel {
         jFrame.setVisible(true);
 
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        s.move();
+        repaint();
     }
 }
