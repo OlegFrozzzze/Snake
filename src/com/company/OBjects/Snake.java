@@ -1,4 +1,4 @@
-package com.company.OBjects;
+package com.company.Objects;
 
 /**
  * Created by ОЛЕГ on 22.06.2017.
