@@ -7,7 +7,7 @@ import com.company.SnakeGameMain;
  */
 public class Snake {
     public int length = 2;
-    public int direction = 0;
+    public int direction = 3;
 
     public int sX [] = new int [300];
     public int sY [] = new int [300];
@@ -29,10 +29,15 @@ public class Snake {
         //up
         if(direction==0) sY[0]--;
         //down
-        if(direction==3) sY[0]++;
+        if(direction==2) sY[0]++;
         //right
         if(direction==1) sX[0]++;
         //left
-        if(direction==2) sX[0]--;
+        if(direction==3) sX[0]--;
+
+        if(sX[0]> SnakeGameMain.WIDTH -1) sX[0] = 0;
+        if(sX[0]<0) sX[0]= SnakeGameMain.WIDTH - 1;
+        if(sY[0]> SnakeGameMain.HEIGHT -1) sY[0] = 0;
+        if(sY[0]<0) sY[0]= SnakeGameMain.HEIGHT - 1;
     }
 }

@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by ОЛЕГ on 22.06.2017.
@@ -26,6 +28,8 @@ public class SnakeGameMain extends JPanel implements ActionListener {
 
     public SnakeGameMain(){
         timer.start();
+        addKeyListener(new KeyBoard());
+        setFocusable(true);
     }
 
     public void paint(Graphics g){
@@ -43,7 +47,7 @@ public class SnakeGameMain extends JPanel implements ActionListener {
     }
 
     for(int l=0;l<s.length;l++){
-            g.setColor(Color.red);
+            g.setColor(Color.lightGray);
             g.fillRect(s.sX[l]*SCALE+1,s.sY[l]*SCALE+1,SCALE -1,SCALE-1);
     }
 }
@@ -64,5 +68,14 @@ public class SnakeGameMain extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         s.move();
         repaint();
+    }
+    public class KeyBoard extends KeyAdapter{
+        public void keyPressed (KeyEvent event){
+            int key = event.getKeyCode();
+            if ((key == KeyEvent.VK_UP) && (s.direction != 2)) s.direction =0;
+            if ((key == KeyEvent.VK_DOWN) && (s.direction != 0)) s.direction =2;
+            if ((key == KeyEvent.VK_LEFT) && (s.direction != 1)) s.direction =3;
+            if ((key == KeyEvent.VK_RIGHT) && (s.direction != 3)) s.direction =1;
+        }
     }
 }
